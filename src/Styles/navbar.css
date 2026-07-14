@@ -1,0 +1,353 @@
+/* --- ESTILOS GLOBAL DE PURO MOMENTUM --- */
+/* Colores clave para PURO MOMENTUM: */
+:root {
+    --color-fondo-principal: #2c2c2c; /* Gris muy oscuro */
+    --color-texto-blanco: #ffffff;
+    --color-acento: #FFD100; /* Rosa/Rojo fuerte */
+    --color-acento-hover: #FFD100; /* Acento un poco más oscuro para hover */
+}
+/* -------------------------------------------------------------------------------------- */
+
+/* 1. Contenedor Principal (NAV) - ESTILOS INICIALES (TRANSPARENTE) */
+.custom-navbar {
+    background-color: transparent; 
+    color: var(--color-texto-blanco);
+    width: 100%;
+    height: 80px; 
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 9999; 
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* NUEVA CLASE: Estilos aplicados después de hacer scroll */
+.custom-navbar.scrolled {
+    background-color: var(--color-fondo-principal); 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+/* 2. Contenedor de Elementos Internos (Logo + Links + Botón) */
+.navbar-container {
+    width: 100%;
+    max-width: 1300px; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* 3. Estilo del Logo */
+.navbar-logo {
+    display: flex; 
+    align-items: center;
+    height: 100%; 
+    margin-right: 0; 
+    /* Ajuste sugerido: reducir el margen negativo, ya que -100px puede causar desbordamiento */
+    
+}
+
+.logo {
+    height: auto; 
+    max-height: 70px; 
+    width: auto;
+    transition: height 0.4s ease;
+}
+
+/* 4. Estilo de los Enlaces Centrales (Desktop/Tablet grande) */
+.navbar-links {
+    display: flex; /* Aseguramos que sea flex en desktop */
+    align-items: center; 
+    margin-left: 20px; 
+    margin-right: 0; 
+    gap: 40px; 
+    height: 100%; 
+    flex-grow: 1; 
+    justify-content: center; 
+}
+
+/* Estilos base para todos los enlaces de navegación */
+.navbar-links .nav-item,
+.navbar-links .nav-item:link,
+.navbar-links .nav-item:active,
+.navbar-links .nav-item:visited { 
+    color: var(--color-texto-blanco) !important; 
+    text-decoration: none !important; 
+    
+    font-size: 16px; 
+    font-weight: 500; 
+    text-transform: uppercase;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 0 5px; 
+    height: 100%; 
+    transition: color 0.2s ease, border-bottom 0.2s ease; 
+    line-height: 1; 
+}
+
+
+/* ESTADO ACTIVO (Clase aplicada por NavLink/HashLink) */
+.active-link {
+    color: var(--color-acento) !important; 
+    font-weight: bold; 
+    border-bottom: 2px solid var(--color-acento);
+}
+
+/* ESTADO HOVER (Al pasar el ratón) */
+.navbar-links .nav-item:hover {
+    color: var(--color-acento) !important; 
+    text-decoration: none !important; 
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------------------- */
+/* --- 5. Estilo del Botón de Contacto (.cta-btn) - ESTRUCTURA DEL DISEÑO --- */
+/* -------------------------------------------------------------------------------------- */
+
+/* Contenedor principal que envuelve al botón (<a>) */
+.nav-button-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+}
+
+/* Contenedor de escritorio (para posicionamiento). Visible por defecto. */
+.navbar-button-desktop {
+    display: flex;
+    align-items: center; 
+    padding-left: 20px; 
+}
+
+/* El elemento principal del botón: el div con clase .cta-btn dentro del ancla */
+.cta-btn {
+    background-color: var(--color-acento); 
+    color: var(--color-texto-blanco) !important; 
+    border: 2px solid var(--color-acento); 
+    
+    font-size: 16px; 
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none; 
+    padding: 10px 25px; 
+    border-radius: 50px; 
+    transition: all 0.3s ease-in-out; 
+    display: inline-block; 
+    line-height: normal; 
+    white-space: nowrap; 
+}
+
+/* ESTILOS DEL BOTÓN EN ESCRITORIO (CON HOVER) */
+.navbar-button-desktop .cta-btn:hover,
+.navbar-button-desktop .cta-btn:focus {
+    background-color: var(--color-acento-hover); 
+    color: var(--color-texto-blanco) !important; 
+    border-color: var(--color-acento-hover); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+    cursor: pointer;
+}
+
+
+/* ESTILOS DEL BOTÓN MÓVIL (FIJO, SIN HOVER) */
+.nav-button-mobile {
+    display: none !important; 
+}
+
+.nav-button-mobile .cta-btn:hover,
+.nav-button-mobile .cta-btn:focus,
+.nav-button-mobile .cta-btn:active {
+    background-color: var(--color-acento) !important; 
+    border-color: var(--color-acento) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* --- LIMPIEZA DE REGLAS ANTIGUAS NO USADAS (OPCIONAL) --- */
+.nav-button {
+    display: none;
+}
+.nav-button:hover {
+    display: none;
+}
+
+/* 6. Toggle de Modo Oscuro (Icono) */
+.dark-mode-toggle {
+    display: none; 
+}
+
+/* 7. Controles Responsive y Botón de Hamburguesa */
+.menu-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    color: var(--color-texto-blanco); 
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; 
+    
+    font-size: 30px; 
+    line-height: 1;
+    font-weight: bold;
+}
+
+
+.custom-navbar {
+    background: linear-gradient(180deg, rgba(6,8,11,.7) 0%, rgba(6,8,11,0) 100%);
+    /* el resto igual */
+}
+
+.custom-navbar.scrolled {
+    background: rgba(6, 8, 11, 0.95);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* ========================================================================== */
+/* --- MEDIA QUERIES PARA RESPONSIVE --- */
+/* ========================================================================== */
+
+
+/* ---------------------------------------------------- */
+/* --- TABLET Y SMARTPHONES GRANDES (Max-width: 992px) --- */
+/* Se activa cuando la pantalla es de 992px o más pequeña */
+@media (max-width: 992px) {
+    
+    /* 1. Ocultar el Botón de Contacto de Escritorio */
+    .navbar-button-desktop {
+        display: none;
+    }
+    
+    /* 2. Mostrar el Botón de Hamburguesa */
+    .menu-toggle {
+        display: block; /* Ahora es visible */
+        order: 3; 
+    }
+    
+    /* 3. Reorganizar los elementos principales en el contenedor */
+    .navbar-container {
+        padding: 0 15px; 
+    }
+
+    /* 4. Ajustar el Logo */
+    .navbar-logo {
+        order: 1;
+        margin-left: 0; 
+    }
+
+    .logo {
+        height: auto; 
+        max-height: 80px; 
+    }
+    
+    /* 5. Estilos del Menú de Enlaces (El que se convierte en lateral) */
+    .navbar-links {
+        display: none; 
+        
+        position: absolute;
+        top: 80px; 
+        left: 0;
+        width: 100%; 
+        height: auto; 
+        
+        background-color: var(--color-fondo-principal); 
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada para elegancia */
+        
+        flex-direction: column; 
+        align-items: center;
+        justify-content: flex-start;
+        
+        gap: 0; 
+        padding: 0; 
+        
+        transition: none; 
+        
+        z-index: 9998; 
+    }
+
+    /* ESTADO ACTIVO: Menú Abierto */
+    .navbar-links.open {
+        display: flex; 
+        padding: 10px 0; /* Reducimos el padding general para controlar mejor el espaciado de los ítems */
+    }
+
+    /* 6. Estilos de los Ítems de Enlace en el Menú Abierto (MEJORAS CRÍTICAS AQUÍ) */
+    .navbar-links .nav-item {
+        width: 100%; 
+        text-align: center;
+        /* Aumento de padding vertical y horizontal para mejor separación y target táctil */
+        padding: 20px 30px; 
+        height: auto; 
+        justify-content: center;
+        
+        /* Línea divisoria más sutil y elegante */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+        
+        /* Mejora Tipográfica para el móvil */
+        font-size: 18px; 
+        font-weight: 700; /* Hacemos las letras más gruesas */
+        letter-spacing: 1px; /* Espaciado sutil para un look más "premium" */
+        
+        /* Añadir un efecto de hover/tap sutil para mejor UX */
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    
+    /* Efecto de hover/tap para mejorar la usabilidad táctil */
+    .navbar-links .nav-item:hover {
+        background-color: rgba(216, 69, 106, 0.1); /* Fondo muy sutil del color de acento */
+        color: var(--color-acento) !important;
+        cursor: pointer;
+    }
+
+    .navbar-links .nav-item:last-child {
+        border-bottom: none; 
+    }
+    
+    /* 7. Mostrar el Botón de Contacto Móvil dentro del menú */
+    .nav-button-mobile {
+        display: flex !important; 
+        width: 100%;
+        justify-content: center;
+        padding: 30px; /* Aumentamos el padding para separarlo de los links */
+    }
+    
+    /* Ajuste para el botón móvil para que ocupe menos espacio */
+    .nav-button-mobile .cta-btn {
+        width: 80%; 
+        text-align: center;
+        font-size: 16px; /* Ajustamos el tamaño del texto del botón */
+        padding: 12px 25px;
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* --- SMARTPHONES PEQUEÑOS (Max-width: 576px) --- */
+/* Ajustes más finos para pantallas muy pequeñas */
+@media (max-width: 576px) {
+    .custom-navbar {
+        height: 60px; /* Barra de navegación un poco más pequeña */
+    }
+
+    .navbar-links {
+        top: 60px; /* Ajustamos la posición del menú para que comience debajo de la barra */
+    }
+    
+    .logo {
+        height: auto;
+        max-height: 180px; 
+    }
+    
+    .menu-toggle {
+        font-size: 24px; /* Icono de hamburguesa más pequeño */
+    }
+
+    .cta-btn {
+        font-size: 14px; /* Texto del botón más pequeño */
+        padding: 8px 20px; 
+    }
+}
