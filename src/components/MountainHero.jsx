@@ -9,8 +9,6 @@ const ORBIT_TURNS = 0.8;
 
 const HOTSPOTS = [
   { id: 1, at: 0.22, x: '24%', y: '55%', title: 'ACATENANGO', text: 'Erupción cada 20 minutos. Dormimos frente al Fuego.' },
-  { id: 2, at: 0.50, x: '52%', y: '48%', title: 'CIUDAD PERDIDA', text: '4 días de selva, ríos y 1.200 escalones de piedra.' },
-  { id: 3, at: 0.78, x: '76%', y: '56%', title: 'EL COCUY', text: 'Glaciar, frailejones y el silencio más grande de Colombia.' },
 ];
 
 export const MountainHero = ({ onExplore }) => {
