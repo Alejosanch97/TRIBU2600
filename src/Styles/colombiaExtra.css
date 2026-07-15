@@ -1,0 +1,184 @@
+/* ════════════════════════════════════════════
+   COLOMBIA — estilos extra sobre todosViajes.css
+   ════════════════════════════════════════════ */
+
+/* ---------- BREADCRUMB ---------- */
+.tv-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .72rem;
+    letter-spacing: .04em;
+    color: rgba(255,255,255,.4);
+    margin: 0 0 26px;
+}
+.tv-breadcrumb a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .3s ease;
+}
+.tv-breadcrumb a:hover { color: #FFD100; }
+.tv-breadcrumb span { color: rgba(255,255,255,.25); }
+.tv-breadcrumb strong { color: #FFD100; font-weight: 700; }
+
+/* ---------- CABECERA DE MES ---------- */
+.col-month {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 6vw;
+}
+.col-month:first-of-type { padding-top: 20px; }
+
+.col-month-head {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 60px 0 34px;
+}
+.col-month-num {
+    font-size: 1rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,209,0,.6);
+    letter-spacing: .05em;
+}
+.col-month-name {
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.col-month-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,209,0,.4), rgba(255,255,255,.05));
+}
+.col-month-count {
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: rgba(255,255,255,.4);
+    white-space: nowrap;
+}
+
+/* El grid dentro de cada mes no lleva el padding lateral (ya lo tiene el .col-month) */
+.col-month .tv-grid {
+    padding: 0 0 20px;
+    max-width: 100%;
+}
+
+/* ---------- BADGE DE CUPOS (no urgente) ---------- */
+.tv-card-cupos {
+    position: absolute;
+    top: 16px; right: 16px;
+    z-index: 2;
+    padding: 6px 14px;
+    background: rgba(6,8,11,.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.15);
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.85);
+}
+
+/* ---------- ACORDEÓN "INCLUYE" ---------- */
+.tv-inc {
+    margin-bottom: 22px;
+}
+.tv-inc-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: #FFD100;
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    cursor: pointer;
+    transition: color .3s ease;
+}
+.tv-inc-toggle:hover { color: #fff; }
+.tv-inc-chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform .4s cubic-bezier(.16,1,.3,1);
+}
+.tv-inc-chevron.open { transform: rotate(180deg); }
+
+.tv-inc-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s cubic-bezier(.16,1,.3,1);
+}
+.tv-inc-collapse.open { max-height: 400px; }
+
+.tv-inc-list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0 4px;
+}
+.tv-inc-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: .78rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,.65);
+    padding: 6px 0;
+}
+.tv-inc-list svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #FFD100;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+    .col-month-head {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 40px 0 24px;
+    }
+    .col-month-line { display: none; }
+    .col-month-count { margin-left: auto; }
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE — COLOMBIA (extra)
+   ════════════════════════════════════════════ */
+
+/* ---------- TABLET (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  .col-month { padding: 0 5vw; }
+  .col-month-head { padding: 50px 0 28px; }
+}
+
+/* ---------- MÓVIL (≤ 640px) ---------- */
+@media (max-width: 640px) {
+  .col-month { padding: 0 20px; }
+  .col-month-head {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 40px 0 24px;
+  }
+  .col-month-line { display: none; }
+  .col-month-name { white-space: normal; }
+  .col-month-count { margin-left: auto; }
+  .tv-inc-collapse.open { max-height: 600px; }
+}
+
+/* ---------- MÓVIL PEQUEÑO (≤ 400px) ---------- */
+@media (max-width: 400px) {
+  .col-month-num { font-size: .85rem; }
+  .tv-breadcrumb { font-size: .66rem; flex-wrap: wrap; }
+}

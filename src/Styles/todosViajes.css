@@ -1,0 +1,468 @@
+/* ════════════════════════════════════════════
+   TODOS LOS VIAJES — página premium oscura
+   ════════════════════════════════════════════ */
+
+.tv-page {
+    background: #06080b;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* ---------- HERO ---------- */
+.tv-hero {
+    position: relative;
+    padding: 160px 6vw 90px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #080d16 0%, #06080b 100%);
+}
+.tv-hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: radial-gradient(ellipse 80% 60% at 30% 40%, #000 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 30% 40%, #000 20%, transparent 75%);
+}
+.tv-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; }
+
+.tv-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: .32em;
+    color: rgba(255,255,255,.45);
+    margin-bottom: 24px;
+    animation: tvFade .8s ease both;
+}
+.tv-hero-tag::before {
+    content: '';
+    width: 34px; height: 1px;
+    background: #FFD100;
+    box-shadow: 0 0 12px rgba(255,209,0,.7);
+}
+
+.tv-hero-title {
+    margin: 0 0 20px;
+    font-weight: 900;
+    line-height: .9;
+    letter-spacing: -0.03em;
+    font-size: clamp(2.6rem, 7vw, 6rem);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+}
+.tv-hero-title span { display: block; animation: tvRise 1s cubic-bezier(.16,1,.3,1) both; }
+.tv-hero-title span:nth-child(1) { animation-delay: .1s; color: #fff; }
+.tv-hero-accent {
+    color: #FFD100;
+    text-shadow: 0 0 70px rgba(255,209,0,.35);
+    animation-delay: .25s !important;
+}
+
+.tv-hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.55);
+    margin: 0;
+    animation: tvFade 1s ease .5s both;
+}
+
+@keyframes tvFade { from { opacity: 0; transform: translateY(18px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes tvRise { from { opacity: 0; transform: translateY(50px);} to { opacity: 1; transform: translateY(0);} }
+
+/* ---------- FILTROS ---------- */
+.tv-filters {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 22px 6vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 28px;
+    background: rgba(6,8,11,.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.tv-filter-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.tv-filter-label {
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .2em;
+    color: rgba(255,255,255,.35);
+}
+.tv-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tv-chip {
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 100px;
+    color: rgba(255,255,255,.6);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    cursor: pointer;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.tv-chip:hover {
+    border-color: rgba(255,209,0,.5);
+    color: #fff;
+}
+.tv-chip.active {
+    background: #FFD100;
+    border-color: #FFD100;
+    color: #06080b;
+}
+.tv-count {
+    margin-left: auto;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: rgba(255,255,255,.4);
+}
+
+/* ---------- ESTADOS ---------- */
+.tv-state {
+    text-align: center;
+    padding: 120px 24px;
+    color: rgba(255,255,255,.5);
+}
+.tv-loader {
+    width: 44px; height: 44px;
+    margin: 0 auto 24px;
+    border: 2px solid rgba(255,255,255,.1);
+    border-top-color: #FFD100;
+    border-radius: 50%;
+    animation: tvSpin .8s linear infinite;
+}
+@keyframes tvSpin { to { transform: rotate(360deg); } }
+.tv-error { color: #ff6b4a; font-weight: 700; }
+.tv-error-detail { font-size: .8rem; opacity: .5; margin-top: 8px; }
+.tv-reset {
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: #FFD100;
+    border: none;
+    color: #06080b;
+    font-weight: 800;
+    letter-spacing: .12em;
+    font-size: .7rem;
+    cursor: pointer;
+}
+
+/* ---------- GRID ---------- */
+.tv-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 50px 6vw 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+/* ---------- TARJETA ---------- */
+.tv-card {
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(255,255,255,.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity .7s ease,
+        transform .8s cubic-bezier(.16,1,.3,1),
+        border-color .4s ease,
+        box-shadow .4s ease;
+    transition-delay: calc(var(--i) * 80ms);
+}
+.tv-card.in-view { opacity: 1; transform: translateY(0); }
+.tv-card:hover {
+    border-color: rgba(255,209,0,.3);
+    box-shadow: 0 30px 70px rgba(0,0,0,.5);
+}
+
+/* Media */
+.tv-card-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+.tv-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.1s cubic-bezier(.16,1,.3,1);
+}
+.tv-card:hover .tv-card-media img { transform: scale(1.08); }
+
+.tv-card-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,8,11,.1) 0%, rgba(6,8,11,.75) 100%);
+}
+
+.tv-card-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    z-index: 2;
+    padding: 6px 14px;
+    background: rgba(6,8,11,.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.15);
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #fff;
+}
+.tv-card-urgent {
+    position: absolute;
+    top: 16px; right: 16px;
+    z-index: 2;
+    padding: 6px 14px;
+    background: #c8472e;
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    color: #fff;
+    animation: tvPulse 2s infinite;
+}
+@keyframes tvPulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(200,71,46,.6); }
+    70% { box-shadow: 0 0 0 12px rgba(200,71,46,0); }
+}
+
+.tv-card-country {
+    position: absolute;
+    bottom: 16px; left: 18px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #FFD100;
+}
+.tv-card-country-line {
+    width: 24px; height: 1px;
+    background: #FFD100;
+    box-shadow: 0 0 8px rgba(255,209,0,.7);
+}
+
+/* Body */
+.tv-card-body {
+    padding: 26px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.tv-card-dest {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+.tv-card-phrase {
+    font-size: .86rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: rgba(255,255,255,.5);
+    margin: 0 0 22px;
+}
+
+.tv-card-meta {
+    display: flex;
+    gap: 28px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    margin-bottom: 20px;
+}
+.tv-meta-item { display: flex; flex-direction: column; gap: 5px; }
+.tv-meta-label {
+    font-size: .55rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: rgba(255,255,255,.35);
+}
+.tv-meta-value {
+    font-size: .82rem;
+    font-weight: 700;
+    color: #fff;
+}
+.tv-price { color: #FFD100; font-weight: 900; font-size: .95rem; }
+
+.tv-card-incluye {
+    margin-bottom: 24px;
+}
+.tv-incluye-label {
+    display: block;
+    font-size: .55rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: rgba(255,255,255,.35);
+    margin-bottom: 6px;
+}
+.tv-card-incluye p {
+    font-size: .8rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,.6);
+    margin: 0;
+}
+
+.tv-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+.tv-btn-detail {
+    flex: 1;
+    padding: 13px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    text-decoration: none;
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    transition: all .35s ease;
+}
+.tv-btn-detail:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,.05);
+}
+.tv-btn-reserve {
+    flex: 1.3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px;
+    background: #FFD100;
+    color: #06080b;
+    text-decoration: none;
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+.tv-btn-reserve svg { width: 14px; height: 14px; transition: transform .35s ease; }
+.tv-btn-reserve:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(255,209,0,.3);
+}
+.tv-btn-reserve:hover svg { transform: translateX(4px); }
+
+/* ---------- CTA FINAL ---------- */
+.tv-cta {
+    text-align: center;
+    padding: 110px 24px 130px;
+    background: linear-gradient(180deg, #06080b 0%, #0b1422 100%);
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+.tv-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0 0 18px;
+    text-transform: uppercase;
+}
+.tv-cta p {
+    color: rgba(255,255,255,.55);
+    margin: 0 0 34px;
+    font-size: 1rem;
+}
+.tv-cta-btn {
+    display: inline-block;
+    padding: 17px 40px;
+    background: #FFD100;
+    color: #06080b;
+    text-decoration: none;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    transition: all .4s cubic-bezier(.16,1,.3,1);
+}
+.tv-cta-btn:hover {
+    background: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 16px 44px rgba(255,209,0,.3);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+    .tv-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .tv-grid { grid-template-columns: 1fr; padding: 40px 20px 80px; }
+    .tv-hero { padding: 120px 24px 60px; }
+    .tv-filters { padding: 18px 20px; gap: 18px; }
+    .tv-count { margin-left: 0; width: 100%; }
+    .tv-card-actions { flex-direction: column; }
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE — TODOS LOS VIAJES
+   ════════════════════════════════════════════ */
+
+/* ---------- TABLET (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  .tv-grid { grid-template-columns: repeat(2, 1fr); gap: 26px; }
+  .tv-hero { padding: 140px 5vw 70px; }
+}
+
+/* ---------- MÓVIL (≤ 640px) ---------- */
+@media (max-width: 640px) {
+  .tv-grid { grid-template-columns: 1fr; padding: 40px 20px 80px; gap: 24px; }
+  .tv-hero { padding: 120px 24px 60px; }
+  .tv-hero-sub { font-size: .95rem; }
+
+  /* Filtros sticky: permitir scroll horizontal de chips */
+  .tv-filters {
+    padding: 16px 20px;
+    gap: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .tv-filters::-webkit-scrollbar { display: none; }
+  .tv-filter-group { flex-shrink: 0; }
+  .tv-count { margin-left: 12px; flex-shrink: 0; }
+
+  .tv-card-actions { flex-direction: column; }
+  .tv-card-dest { font-size: 1.25rem; }
+}
+
+/* ---------- MÓVIL PEQUEÑO (≤ 400px) ---------- */
+@media (max-width: 400px) {
+  .tv-hero-title { font-size: clamp(2.2rem, 12vw, 3rem); }
+  .tv-card-body { padding: 22px 20px 20px; }
+  .tv-card-meta { gap: 18px; }
+}

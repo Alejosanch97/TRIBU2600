@@ -24,12 +24,12 @@ const placeholderImage = "https://i.pinimg.com/1200x/f6/93/41/f693414005b0587cf2
 // Datos para la nueva sección
 const destinations = [
     { name: 'COLOMBIA', image: "https://i.pinimg.com/736x/4b/58/ae/4b58ae589fc8ce36b39ab2f10ed0cc3d.jpg" }, // Usando mountainsImage
+    { name: 'GUATEMALA', image: "https://i.pinimg.com/1200x/21/cc/c8/21ccc846e7dddb3b9aecec100ad2f300.jpg" },
+    { name: 'BRAZIL', image: "https://i.pinimg.com/736x/e6/9f/ad/e69fade7a1a1135cf0c3549bd6b6f3fb.jpg" },
     { name: 'PERU', image: "https://i.pinimg.com/736x/94/50/bd/9450bd49fb017c52b98e547e0c80997b.jpg" },
     { name: 'BOLIVIA', image: "https://i.pinimg.com/736x/e5/7d/76/e57d768313b871ffcb9bc15d829a550c.jpg" },
-    { name: 'GUATEMALA', image: "https://i.pinimg.com/1200x/21/cc/c8/21ccc846e7dddb3b9aecec100ad2f300.jpg" },
     { name: 'MEXICO', image: "https://i.pinimg.com/736x/2f/f4/0d/2ff40d06f7e6fda235ea0fb00e6cd0b8.jpg" },
     { name: 'EUROPA', image: "https://i.pinimg.com/736x/8e/d0/2d/8ed02daed42b64b471af335418476f6f.jpg" }, // Usada antes para Europa
-    { name: 'MEDITERRANEO', image: "https://i.pinimg.com/736x/4d/9e/7b/4d9e7be6d441142be895a0bceb03b285.jpg" },
     { name: 'ASIA', image: "https://i.pinimg.com/1200x/aa/df/ba/aadfba80c32936d84af2d27769dc73ab.jpg" },
 ];
 const months = [
@@ -44,7 +44,7 @@ const months = [
     { name: 'SEPTIEMBRE', image: "https://i.pinimg.com/1200x/de/43/9a/de439a3eb58f2bae6ae8b3ba3f7b977f.jpg" },
     { name: 'OCTUBRE', image: "https://i.pinimg.com/736x/13/9a/dc/139adc9311f86bb537e7d0a6647b7727.jpg" },
     { name: 'NOVIEMBRE', image: "https://i.pinimg.com/1200x/14/93/98/149398dd95d4be3e1fbb1537ece43a4c.jpg" },
-    { name: 'DICIEMBRE', image: "https://i.pinimg.com/736x/50/bc/3e/50bc3e37f2f9954a96412a9cafc6da55.jpg" },
+    { name: 'DICIEMBRE', image: "https://i.pinimg.com/736x/80/28/19/80281906250b49a80467292e998492eb.jpg" },
 ];
 
 const testimonials = [
@@ -114,6 +114,7 @@ export const Home = () => {
     const expedicionesRef = useRef(null);
     const horizontalRef = useRef(null);
     const trackRef = useRef(null);
+    const finderRef = useRef(null);
     const [hProgress, setHProgress] = useState(0);
 
 
@@ -139,6 +140,7 @@ export const Home = () => {
 
         if (manifestoRef.current) observer.observe(manifestoRef.current);
         if (expedicionesRef.current) observer.observe(expedicionesRef.current);
+        if (finderRef.current) observer.observe(finderRef.current);
 
         return () => observer.disconnect();
     }, []);
@@ -284,15 +286,15 @@ export const Home = () => {
 
                         <p className="manifesto-lead">
                             Existe una diferencia entre <em>ver</em> una montaña y <em>subirla</em>.
-                            Entre tomarle una foto al glaciar y sentir cómo te quema los pulmones
-                            a 4.800 metros.
+                            Entre tomarle una foto al glaciar y respirar el aire más puro y vivo
+                            a 4.800 metros de altura.
                         </p>
 
                         <p className="manifesto-body">
                             Nosotros no vendemos postales. Diseñamos travesías para gente que
-                            entrena, que suda, que se levanta a las 3 a.m. porque la cumbre
-                            no espera. Rutas exigentes, logística impecable, y un precio que
-                            no te obliga a elegir entre la aventura y el arriendo.
+                            busca desconectar de la rutina, superar sus propios límites y vivir
+                            la montaña al máximo. Rutas emocionantes, logística impecable y un
+                            precio inteligente que te permite viajar sin sacrificar tu presupuesto.
                         </p>
 
                         <div className="manifesto-cta-row">
@@ -450,7 +452,7 @@ export const Home = () => {
                                     </button>
                                 </div>
                             </article>
-                            
+
                             {/* ---------- EXPEDICIÓN 02 ---------- */}
                             <article className="exp-card">
                                 <span className="exp-card-index">02</span>
@@ -482,7 +484,7 @@ export const Home = () => {
                                     </p>
                                     <button
                                         className="exp-card-btn"
-                                        >
+                                    >
                                         <span>VER ITINERARIO</span>
                                         <svg viewBox="0 0 24 24" fill="none">
                                             <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -625,112 +627,99 @@ export const Home = () => {
             {/* ======================================= */}
             {/* SECCIÓN 4: HOW DO YOU TRAVEL? (FILTROS CORREGIDOS) */}
             {/* ======================================= */}
-            <section className="travel-finder-section" id="viajes-por-mes">
-                <div className="container">
-                    <h2 className="finder-main-title">¿CUÁL SERÁ TU PRÓXIMO GRAN VIAJE?</h2>
+            {/* ======================================= */}
+            {/* SECCIÓN 4: BUSCADOR — claro cálido       */}
+            {/* ======================================= */}
+            <section ref={finderRef} className="finder-section" id="viajes-por-mes">
 
-                    {/* Controles de Filtro */}
-                    <div className="finder-filters">
+                {/* Transición desde el azul de arriba */}
+                <div className="finder-top-fade" />
+
+                <div className="finder-inner">
+
+                    <div className="finder-head">
+                        <span className="finder-tag">TU PRÓXIMO CAPÍTULO</span>
+                        <h2 className="finder-title">
+                            <span className="fnd-line">¿A DÓNDE TE</span>
+                            <span className="fnd-line fnd-accent">LLAMA EL MUNDO?</span>
+                        </h2>
+                        <p className="finder-sub">
+                            Explora por destino o encuentra la ventana perfecta en el calendario.
+                        </p>
+                    </div>
+
+                    {/* SWITCH mejorado con indicador deslizante */}
+                    <div className="finder-switch" data-active={activeFilter}>
                         <button
-                            className={`filter-btn ${activeFilter === 'destination' ? 'active' : ''}`}
+                            className={`switch-btn ${activeFilter === 'destination' ? 'active' : ''}`}
                             onClick={() => setActiveFilter('destination')}
                         >
+                            <span className="switch-icon">◈</span>
                             POR DESTINO
                         </button>
                         <button
-                            className={`filter-btn ${activeFilter === 'month' ? 'active' : ''}`}
+                            className={`switch-btn ${activeFilter === 'month' ? 'active' : ''}`}
                             onClick={() => setActiveFilter('month')}
                         >
+                            <span className="switch-icon">◷</span>
                             POR MES
                         </button>
+                        <span className="switch-pill" />
                     </div>
 
-                    {/* Contenido de las Tarjetas (Grid) */}
-                    <div className={`finder-content-grid ${activeFilter === 'destination' ? 'grid-4-cols' : 'grid-6-cols'}`}>
-
-                        {/* Renderizar Destinos */}
+                    <div className={`finder-grid ${activeFilter === 'destination' ? 'g-dest' : 'g-month'}`}>
                         {activeFilter === 'destination' && destinations.map((item, index) => (
-                            // *** RUTA DINÁMICA POR PAÍS ***
                             <Link
                                 key={`dest-${index}`}
                                 to={getCountryPath(item.name)}
-                                className="grid-item destination-link"
+                                className="fnd-card"
+                                style={{ '--i': index }}
                             >
-                                <img src={item.image} alt={item.name} className="grid-image" />
-                                <span className="item-label">{item.name}</span>
+                                <div className="fnd-card-img">
+                                    <img src={item.image} alt={item.name} />
+                                </div>
+                                <div className="fnd-card-overlay" />
+                                <div className="fnd-card-content">
+                                    <span className="fnd-card-num">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </span>
+                                    <span className="fnd-card-name">{item.name}</span>
+                                    <span className="fnd-card-go">
+                                        EXPLORAR
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                    </span>
+                                </div>
                             </Link>
                         ))}
 
-                        {/* Renderizar Meses - ¡CORRECCIÓN APLICADA AQUÍ! */}
                         {activeFilter === 'month' && months.map((item, index) => (
-                            // *** RUTA DINÁMICA POR MES HACIA MonthlyTripPage ***
                             <Link
                                 key={`month-${index}`}
-                                // to debe apuntar a la nueva ruta y pasar el mes en minúsculas
                                 to={`/viajes-por-mes/${item.name.toLowerCase()}`}
-                                className="grid-item month-link"
+                                className="fnd-card fnd-card-month"
+                                style={{ '--i': index }}
                             >
-                                <img src={item.image} alt={item.name} className="grid-image" />
-                                <span className="item-label">{item.name}</span>
+                                <div className="fnd-card-img">
+                                    <img src={item.image} alt={item.name} />
+                                </div>
+                                <div className="fnd-card-overlay" />
+                                <div className="fnd-card-content">
+                                    <span className="fnd-card-name">{item.name}</span>
+                                    <span className="fnd-card-go">
+                                        VER VIAJES
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                    </span>
+                                </div>
                             </Link>
                         ))}
                     </div>
                 </div>
             </section>
-            {/* ======================================= */}
-            {/* SECCIÓN 5: TESTIMONIOS / COMENTARIOS (LOOP INFINITO) */}
-            {/* ======================================= */}
-            <section className="testimonials-section">
-                <div className="container">
-                    <h2 className="testimonials-main-title">¿POR QUÉ LOS VIAJEROS ELIGEN NUESTRA PASIÓN?</h2>
-
-                    <div className="testimonial-carousel-wrapper">
-
-                        <div
-                            className="testimonial-content-scroll"
-                            style={{
-                                // Se mueve al 50% por cada tarjeta (muestra 2 a la vez)
-                                transform: `translateX(-${currentIndex * 50}%)`,
-                                // CLAVE: Se maneja la transición directamente en el useEffect/CSS
-                            }}
-                        >
-                            {/* *** Usamos el array CLONADO *** */}
-                            {carouselItems.map((testimonial, index) => (
-                                <div key={index} className="testimonial-card">
-
-                                    <div className="testimonial-image-wrapper">
-                                        <img
-                                            src={testimonial.image}
-                                            alt={`Testimonio de ${testimonial.author}`}
-                                            className="testimonial-image"
-                                        />
-                                    </div>
-
-                                    <div className="testimonial-text-content">
-                                        <span className="quote-icon">“</span>
-                                        <p className="quote-text">{testimonial.quote}</p>
-                                        <p className="quote-author">{testimonial.author}</p>
-                                    </div>
-                                </div>
-                            ))}
-
-                        </div>
-                    </div>
-
-                    {/* *** INDICADORES DE PUNTOS (Dots) *** */}
-                    <div className="carousel-dots">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                className={`dot ${index === dotIndex ? 'active' : ''}`}
-                                onClick={() => handleDotClick(index)}
-                                aria-label={`Ir al testimonio ${index + 1}`}
-                            />
-                        ))}
-                    </div>
-
-                </div>
-            </section>
+            
 
         </main>
     );

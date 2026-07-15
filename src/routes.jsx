@@ -9,6 +9,10 @@ import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
+import { TodosLosViajes } from './pages/TodosLosViajes';
+import { ColombiaPage } from "./pages/ColombiaPage";
+import { InternationalTripPage } from './pages/InternationalTripPage'; 
+import { MonthlyTripPage } from './pages/MonthlyTripPage';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,6 +29,10 @@ export const router = createBrowserRouter(
         <Route path= "/" element={<Home />} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />
+        <Route path="/todos-los-viajes" element={<TodosLosViajes />} />
+        <Route path="/colombia" element={<ColombiaPage />} />
+        <Route path="/viajes-internacionales/:country" element={<InternationalTripPage />} />
+        <Route path="/viajes-por-mes/:month" element={<MonthlyTripPage />} />
       </Route>
     )
 );
