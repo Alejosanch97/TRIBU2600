@@ -8,25 +8,25 @@ const ORBIT_TURNS = 0.8;
 
 
 const HOTSPOTS = [
-  { id: 1, at: 0.22, x: '24%', y: '55%', title: 'ACATENANGO',     text: 'Erupción cada 20 minutos. Dormimos frente al Fuego.' },
+  { id: 1, at: 0.22, x: '24%', y: '55%', title: 'ACATENANGO', text: 'Erupción cada 20 minutos. Dormimos frente al Fuego.' },
   { id: 2, at: 0.50, x: '52%', y: '48%', title: 'CIUDAD PERDIDA', text: '4 días de selva, ríos y 1.200 escalones de piedra.' },
-  { id: 3, at: 0.78, x: '76%', y: '56%', title: 'EL COCUY',       text: 'Glaciar, frailejones y el silencio más grande de Colombia.' },
+  { id: 3, at: 0.78, x: '76%', y: '56%', title: 'EL COCUY', text: 'Glaciar, frailejones y el silencio más grande de Colombia.' },
 ];
 
 export const MountainHero = ({ onExplore }) => {
   const sectionRef = useRef(null);
   const wrapperRef = useRef(null);       // ⬅️ NUEVO: ref al wrapper de Spline
-  const camRef     = useRef(null);
-  const baseRef    = useRef(null);
-  const rafRef     = useRef(null);
+  const camRef = useRef(null);
+  const baseRef = useRef(null);
+  const rafRef = useRef(null);
 
-  const targetP  = useRef(0);
+  const targetP = useRef(0);
   const currentP = useRef(0);
-  const loopRef  = useRef(null);
+  const loopRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
-  const [ready, setReady]       = useState(false);
-  const [armed, setArmed]       = useState(false);
+  const [ready, setReady] = useState(false);
+  const [armed, setArmed] = useState(false);
 
   const onLoad = (spline) => {
     const cam = spline.findObjectByName(CAMERA_NAME);
@@ -42,7 +42,7 @@ export const MountainHero = ({ onExplore }) => {
     baseRef.current = {
       y,
       radius: Math.sqrt(x * x + z * z),
-      angle:  Math.atan2(x, z),
+      angle: Math.atan2(x, z),
     };
     camRef.current = cam;
     setReady(true);
@@ -75,7 +75,7 @@ export const MountainHero = ({ onExplore }) => {
       loopRef.current = requestAnimationFrame(loop);
       currentP.current += (targetP.current - currentP.current) * 0.08;
 
-      const cam  = camRef.current;
+      const cam = camRef.current;
       const base = baseRef.current;
       if (!cam || !base) return;
 
@@ -104,8 +104,10 @@ export const MountainHero = ({ onExplore }) => {
         const el = sectionRef.current;
         if (!el) return;
 
-        const rect  = el.getBoundingClientRect();
-        const total = el.offsetHeight - window.innerHeight;
+        const rect = el.getBoundingClientRect();
+        // usa la altura del sticky, no window.innerHeight
+        const vh = el.firstElementChild?.offsetHeight || window.innerHeight;
+        const total = el.offsetHeight - vh;
         const p = Math.min(Math.max(-rect.top / total, 0), 1);
 
         targetP.current = p;
@@ -123,7 +125,7 @@ export const MountainHero = ({ onExplore }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mountain-hero" style={{ height: '150vh' }}>
+    <section ref={sectionRef} className="mountain-hero">
       <div className="mountain-sticky">
 
         {/* ⬅️ pointer-events ACTIVO: el mousemove llega a Spline */}
