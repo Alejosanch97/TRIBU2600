@@ -141,20 +141,6 @@ export const MountainHero = ({ onExplore }) => {
         <div className="mountain-vignette" />
         <div className="spline-logo-cover" />
 
-        {HOTSPOTS.map((h) => (
-          <div
-            key={h.id}
-            className={`hotspot ${Math.abs(progress - h.at) < 0.10 ? 'is-visible' : ''}`}
-            style={{ left: h.x, top: h.y }}
-          >
-            <span className="hotspot-pulse" />
-            <div className="hotspot-card">
-              <h4>{h.title}</h4>
-              <p>{h.text}</p>
-            </div>
-          </div>
-        ))}
-
         <div className="mountain-overlay">
           <div
             className="hero-text-block"
@@ -176,7 +162,7 @@ export const MountainHero = ({ onExplore }) => {
           <button
             className="btn-orbit"
             onClick={onExplore}
-            style={{ opacity: Math.max(0, 1 - progress * 2.2) }}
+            style={{ opacity: Math.max(0, 1) }}
           >
             <span className="btn-orbit-ring" />
             <span className="btn-orbit-arc" />
@@ -187,7 +173,7 @@ export const MountainHero = ({ onExplore }) => {
 
           <div
             className="scroll-indicator-3d"
-            style={{ opacity: Math.max(0, 1 - progress * 3) }}
+            style={{ opacity: Math.max(0, 1 ) }}
           >
             <span className="scroll-word">SCROLL</span>
             <div className="scroll-track">
