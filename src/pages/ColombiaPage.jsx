@@ -60,7 +60,7 @@ const TripCard = ({ viaje, index }) => {
     const hasDetail = viaje.detalle_adicional_url && String(viaje.detalle_adicional_url).startsWith('http');
 
     const waText = viaje.texto_whatsapp || `Viaje a ${viaje.destino_especifico}`;
-    const waLink = `https://wa.me/573023042213?text=${encodeURIComponent(`Hola, vi tu web y estoy interesado en el viaje a ${waText}`)}`;
+    const waLink = `https://wa.me/573173769865?text=${encodeURIComponent(`Hola, vi tu web y estoy interesado en el viaje a ${waText}`)}`;
 
     return (
         <article
