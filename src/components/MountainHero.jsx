@@ -80,9 +80,9 @@ export const MountainHero = ({ onExplore }) => {
       const p = currentP.current;
       const angle = base.angle + p * Math.PI * 2 * ORBIT_TURNS;
 
-      cam.position.x = Math.sin(angle) * base.radius;
-      cam.position.z = Math.cos(angle) * base.radius;
-      cam.position.y = base.y + p * 200;
+      cam.position.x = Math.sin(base.angle) * base.radius;
+      cam.position.z = Math.cos(base.angle) * base.radius;
+      cam.position.y = base.y 
 
       if (cam.lookAt) cam.lookAt(0, 0, 0);
     };
@@ -146,7 +146,7 @@ export const MountainHero = ({ onExplore }) => {
             className="hero-text-block"
             style={{
               opacity: Math.max(0, 1),
-              
+
             }}
           >
             <h1 className="hero-title-3d">
