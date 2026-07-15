@@ -145,8 +145,8 @@ export const MountainHero = ({ onExplore }) => {
           <div
             className="hero-text-block"
             style={{
-              opacity: Math.max(0, 1 - progress * 2.2),
-              transform: `translateY(${progress * -50}px)`,
+              opacity: Math.max(0, 1),
+              
             }}
           >
             <h1 className="hero-title-3d">
@@ -171,15 +171,6 @@ export const MountainHero = ({ onExplore }) => {
             </span>
           </button>
 
-          <div
-            className="scroll-indicator-3d"
-            style={{ opacity: Math.max(0, 1 ) }}
-          >
-            <span className="scroll-word">SCROLL</span>
-            <div className="scroll-track">
-              <span className="scroll-dot" />
-            </div>
-          </div>
         </div>
 
       </div>
