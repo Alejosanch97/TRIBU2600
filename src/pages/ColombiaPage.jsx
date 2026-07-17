@@ -171,6 +171,10 @@ export const ColombiaPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         const fetchTrips = async () => {
             try {
                 const res = await fetch(GAS_API_URL);

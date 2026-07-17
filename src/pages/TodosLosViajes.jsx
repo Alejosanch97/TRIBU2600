@@ -29,6 +29,10 @@ export const TodosLosViajes = () => {
     const [tipoFilter, setTipoFilter] = useState('TODOS');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    useEffect(() => {
         fetch(API_URL)
             .then((r) => r.json())
             .then((data) => {
