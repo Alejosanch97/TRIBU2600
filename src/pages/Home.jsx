@@ -27,7 +27,7 @@ const destinations = [
     { name: 'GUATEMALA', image: "https://i.pinimg.com/1200x/21/cc/c8/21ccc846e7dddb3b9aecec100ad2f300.jpg" },
     { name: 'BRAZIL', image: "https://i.pinimg.com/736x/e6/9f/ad/e69fade7a1a1135cf0c3549bd6b6f3fb.jpg" },
     { name: 'PERU', image: "https://i.pinimg.com/736x/94/50/bd/9450bd49fb017c52b98e547e0c80997b.jpg" },
-    { name: 'BOLIVIA', image: "https://i.pinimg.com/736x/e5/7d/76/e57d768313b871ffcb9bc15d829a550c.jpg" },
+    { name: 'BOLIVIA', image: "https://i.pinimg.com/1200x/de/e0/6b/dee06b291d70f5459e965e44efacf0be.jpg" },
     { name: 'MEXICO', image: "https://i.pinimg.com/736x/2f/f4/0d/2ff40d06f7e6fda235ea0fb00e6cd0b8.jpg" },
     { name: 'EUROPA', image: "https://i.pinimg.com/736x/8e/d0/2d/8ed02daed42b64b471af335418476f6f.jpg" }, // Usada antes para Europa
     { name: 'ASIA', image: "https://i.pinimg.com/1200x/aa/df/ba/aadfba80c32936d84af2d27769dc73ab.jpg" },
