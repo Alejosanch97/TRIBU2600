@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 const video1 = "https://res.cloudinary.com/deafueoco/video/upload/v1776440899/02_1_rhsmu5.mov";
+const scrollVideo = "https://res.cloudinary.com/k44zr7ap/video/upload/q_auto,vc_h264,w_1920/v1789577186/15019085_3840_2160_25fps.mp4";
 
 import "../Styles/home.css";
 import { HashLink } from "react-router-hash-link";
@@ -115,6 +116,8 @@ export const Home = () => {
     const horizontalRef = useRef(null);
     const trackRef = useRef(null);
     const finderRef = useRef(null);
+    const scrollVideoRef = useRef(null);
+    const heroScrubRef = useRef(null);
     const [hProgress, setHProgress] = useState(0);
 
 
@@ -122,6 +125,52 @@ export const Home = () => {
     const carouselItems = [...testimonials, testimonials[0]];
     const totalOriginalItems = testimonials.length;
     const totalCarouselItems = carouselItems.length; // N + 1
+
+    // Video: se reproduce una vez a velocidad normal. Al terminar se queda en el
+    // último frame. Al volver arriba (scrollY === 0) se reinicia y reproduce de nuevo.
+    useEffect(() => {
+        const video = scrollVideoRef.current;
+        if (!video) return;
+
+        let hasEnded = false;
+
+        const playFromStart = () => {
+            hasEnded = false;
+            video.currentTime = 0;
+            video.play().catch(() => { });
+        };
+
+        const onEnded = () => {
+            hasEnded = true;
+            video.pause();
+            // se queda congelado en el último frame
+        };
+
+        const onCanPlay = () => {
+            if (!hasEnded && video.paused && window.scrollY === 0) {
+                video.play().catch(() => { });
+            }
+        };
+
+        video.addEventListener('ended', onEnded);
+        video.addEventListener('canplaythrough', onCanPlay);
+
+        const handleScroll = () => {
+            if (window.scrollY === 0 && hasEnded) {
+                playFromStart();
+            }
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // arranca al cargar
+        video.play().catch(() => { });
+
+        return () => {
+            video.removeEventListener('ended', onEnded);
+            video.removeEventListener('canplaythrough', onCanPlay);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     // Efecto para detectar scroll usando IntersectionObserver
     useEffect(() => {
@@ -231,14 +280,6 @@ export const Home = () => {
     // **********************************************
     // * CAMBIO CLAVE: Videos cambian cada 5 segundos *
     // **********************************************
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentVideoIndex(prevIndex =>
-                (prevIndex + 1) % videoSources.length
-            );
-        }, 4000); // 5000ms = 5 segundos
-        return () => clearInterval(interval);
-    }, [videoSources.length]);
 
     // *** FUNCIÓN CLAVE PARA NAVEGAR Y FILTRAR ***
     const handleNavigateToMonth = () => {
@@ -263,7 +304,32 @@ export const Home = () => {
             {/* ======================================= */}
             {/* SECCIÓN 1: HERO 3D — MONTAÑA INTERACTIVA */}
             {/* ======================================= */}
-            <MountainHero onExplore={handleNavigateToMonth} />
+            {/* <MountainHero onExplore={handleNavigateToMonth} /> */}
+
+            {/* SECCIÓN 1: HERO — VIDEO SCROLL-SCRUB */}
+            <section ref={heroScrubRef} className="hero-scrub-section">
+                <div className="hero-scrub-sticky">
+                    <video
+                        ref={scrollVideoRef}
+                        className="hero-scrub-video"
+                        src={scrollVideo}
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="auto"
+                    />
+                    <div className="hero-scrub-overlay">
+                        <h1 className="hero-scrub-title">
+                            TRIBU 2600<br />
+                            <span className="hs-accent">EL MUNDO ESPERA.</span>
+                        </h1>
+                        <p className="hero-scrub-sub">NACIMOS PARA EXPLORAR.</p>
+                        <button className="hero-scrub-cta" onClick={handleNavigateToMonth}>
+                            MIRA LOS DESTINOS
+                        </button>
+                    </div>
+                </div>
+            </section>
 
             {/* ======================================= */}
             {/* SECCIÓN 2A: MANIFIESTO — fondo oscuro   */}
@@ -453,46 +519,6 @@ export const Home = () => {
                                 </div>
                             </article>
 
-                            {/* ---------- EXPEDICIÓN 02 ---------- */}
-                            <article className="exp-card">
-                                <span className="exp-card-index">02</span>
-                                <div className="exp-card-media">
-                                    <img src={romeImage} alt="Perú" />
-                                    <span className="exp-card-glow" />
-                                </div>
-                                <div className="exp-card-body">
-                                    <div className="exp-card-meta">
-                                        <span className="exp-meta-item">
-                                            <em>PAÍS</em>
-                                            <strong>PERÚ</strong>
-                                        </span>
-                                        <span className="exp-meta-item">
-                                            <em>DURACIÓN</em>
-                                            <strong>8 NOCHES</strong>
-                                        </span>
-                                        <span className="exp-meta-item">
-                                            <em>NIVEL</em>
-                                            <strong>EXIGENTE</strong>
-                                        </span>
-                                    </div>
-                                    <h3 className="exp-card-title">
-                                        LA RUTA AL CORAZÓN DE LOS ANDES
-                                    </h3>
-                                    <p className="exp-card-text">
-                                        Machu Picchu al amanecer, dunas de Huacachina y
-                                        el aire delgado del Valle Sagrado.
-                                    </p>
-                                    <button
-                                        className="exp-card-btn"
-                                    >
-                                        <span>VER ITINERARIO</span>
-                                        <svg viewBox="0 0 24 24" fill="none">
-                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </article>
-
                             {/* ---------- EXPEDICIÓN 03 ---------- */}
                             <article className="exp-card">
                                 <span className="exp-card-index">03</span>
@@ -521,6 +547,44 @@ export const Home = () => {
                                     <p className="exp-card-text">
                                         Uyuni, Titicaca y el Desierto Dalí. Paisajes
                                         que no parecen de este planeta.
+                                    </p>
+                                    <Link to="/bolivia" className="exp-card-btn">
+                                        <span>VER ITINERARIO</span>
+                                        <svg viewBox="0 0 24 24" fill="none">
+                                            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </article>
+
+                            {/* ---------- EXPEDICIÓN 02 ---------- */}
+                            <article className="exp-card">
+                                <span className="exp-card-index">02</span>
+                                <div className="exp-card-media">
+                                    <img src={romeImage} alt="Perú" />
+                                    <span className="exp-card-glow" />
+                                </div>
+                                <div className="exp-card-body">
+                                    <div className="exp-card-meta">
+                                        <span className="exp-meta-item">
+                                            <em>PAÍS</em>
+                                            <strong>PERÚ</strong>
+                                        </span>
+                                        <span className="exp-meta-item">
+                                            <em>DURACIÓN</em>
+                                            <strong>8 NOCHES</strong>
+                                        </span>
+                                        <span className="exp-meta-item">
+                                            <em>NIVEL</em>
+                                            <strong>EXIGENTE</strong>
+                                        </span>
+                                    </div>
+                                    <h3 className="exp-card-title">
+                                        LA RUTA AL CORAZÓN DE LOS ANDES
+                                    </h3>
+                                    <p className="exp-card-text">
+                                        Machu Picchu al amanecer, dunas de Huacachina y
+                                        el aire delgado del Valle Sagrado.
                                     </p>
                                     <button
                                         className="exp-card-btn"
@@ -719,7 +783,7 @@ export const Home = () => {
                     </div>
                 </div>
             </section>
-            
+
 
         </main>
     );

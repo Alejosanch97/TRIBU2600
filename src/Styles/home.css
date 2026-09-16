@@ -2436,6 +2436,68 @@
     height: 14px;
 }
 
+.hero-scrub-section {
+    position: relative;
+    height: 100vh;
+}
+.hero-scrub-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+.hero-scrub-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-scrub-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 6vw;
+    /* Reducimos la opacidad para que el video respire y solo dejamos una leve sombra detrás del texto */
+    background: linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 45%);
+    z-index: 2;
+}
+
+/* Agrega esto para darle viveza al video directamente desde CSS */
+.hero-scrub-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease-in-out;
+    /* Aumenta la saturación y el contraste sutilmente */
+    filter: contrast(1.08) saturate(1.15) brightness(1.02);
+}
+.hero-scrub-title {
+    font-size: clamp(2.5rem, 8vw, 7rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: .95;
+    margin: 0;
+}
+.hs-accent { color: #F2C200; }
+.hero-scrub-sub {
+    color: #cfcfcf;
+    letter-spacing: .15em;
+    margin-top: 1rem;
+}
+.hero-scrub-cta {
+    margin-top: 2rem;
+    align-self: flex-start;
+    padding: .9rem 1.8rem;
+    background: transparent;
+    border: 1px solid #F2C200;
+    color: #F2C200;
+    letter-spacing: .1em;
+    cursor: pointer;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1024px) {
     .finder-grid.g-dest { grid-template-columns: repeat(3, 1fr); }

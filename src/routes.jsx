@@ -13,6 +13,7 @@ import { TodosLosViajes } from './pages/TodosLosViajes';
 import { ColombiaPage } from "./pages/ColombiaPage";
 import { InternationalTripPage } from './pages/InternationalTripPage'; 
 import { MonthlyTripPage } from './pages/MonthlyTripPage';
+import { Bolivia } from './pages/Bolivia';
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -33,6 +34,7 @@ export const router = createBrowserRouter(
         <Route path="/colombia" element={<ColombiaPage />} />
         <Route path="/viajes-internacionales/:country" element={<InternationalTripPage />} />
         <Route path="/viajes-por-mes/:month" element={<MonthlyTripPage />} />
+        <Route path="/bolivia" element={<Bolivia />} />
       </Route>
     )
 );
