@@ -57,22 +57,22 @@ const DAYS = [
         tl: [['Mañana', 'ruta al Charquini (~1h30)'], ['Día', 'caminata a la Laguna Esmeralda'], ['Tarde', 'regreso a La Paz (~15:30)']]
     },
     {
-        n: '07', date: 'Mar 13 ene', tag: 'Cordillera Real · 5.300 m', title: 'MONTAÑA 2 · PICO AUSTRIA',
-        img: 'https://i.pinimg.com/736x/a1/ad/a3/a1ada3dbbaa2802f13be74d525ad3ff0.jpg',
-        text: 'El cierre de altura: trekking de un día entre lagunas glaciares a los pies del Condoriri y el Pico Austria. Caminata de altura sin ascenso técnico, ya con el cuerpo listo. La montaña que define a la Tribu.',
-        facts: [['mtn', 'Condoriri / Pico Austria'], ['pin', 'Lagunas glaciares']],
-        hotel: 'Hotel en La Paz · noche 6',
-        tour: 'Condoriri + Pico Austria (5★)', tcost: '376.100',
-        tl: [['Mañana', 'ruta a la Cordillera Real'], ['Día', 'trekking entre lagunas glaciares'], ['Tarde', 'regreso a La Paz']]
-    },
-    {
-        n: '08', date: 'Dom 11 ene', tag: 'Valles andinos', title: 'PARAPENTE',
+        n: '07', date: 'Dom 11 ene', tag: 'Valles andinos', title: 'PARAPENTE',
         img: 'https://i.pinimg.com/736x/ad/4c/6d/ad4c6df4bd7fde48ab4fb57e0c56acd9.jpg',
         text: 'Día de bajo desgaste físico, perfecto después de la montaña. Vuelo en parapente sobre los valles andinos cercanos a La Paz: adrenalina suave y vistas imposibles, sin exigir las piernas.',
         facts: [['pin', 'Vuelo en parapente'], ['bed', 'Bajo desgaste']],
         hotel: 'Hotel en La Paz · noche 4',
         tour: 'Parapente sobre valles andinos', tcost: '327.100',
         tl: [['Mañana', 'traslado a la zona de vuelo'], ['Día', 'vuelo en parapente'], ['Tarde', 'regreso y tarde libre']]
+    },
+    {
+        n: '08', date: 'Mar 13 ene', tag: 'Cordillera Real · 5.300 m', title: 'MONTAÑA 2 · PICO AUSTRIA',
+        img: 'https://i.pinimg.com/736x/a1/ad/a3/a1ada3dbbaa2802f13be74d525ad3ff0.jpg',
+        text: 'El cierre de altura: trekking de un día entre lagunas glaciares a los pies del Condoriri y el Pico Austria. Caminata de altura sin ascenso técnico, ya con el cuerpo listo. La montaña que define a la Tribu.',
+        facts: [['mtn', 'Condoriri / Pico Austria'], ['pin', 'Lagunas glaciares']],
+        hotel: 'Hotel en La Paz · noche 6',
+        tour: 'Condoriri + Pico Austria (5★)', tcost: '376.100',
+        tl: [['Mañana', 'ruta a la Cordillera Real'], ['Día', 'trekking entre lagunas glaciares'], ['Tarde', 'regreso a La Paz']]
     },
     {
         n: '09', date: 'Lun 12 ene', tag: 'Yungas · descenso a 1.100 m', title: 'EL CAMINO DE LA MUERTE',
