@@ -2784,3 +2784,52 @@
   .exp-card { flex: 0 0 260px; }
   .manifesto-title { font-size: 1.6rem; }
 }
+
+
+/* Fondo desenfocado detrás del video (oculto por defecto = desktop intacto) */
+.hero-scrub-sticky::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: none;
+}
+
+/* ============ HERO VIDEO — SOLO CELULAR (vertical) ============ */
+@media (max-width: 768px) and (orientation: portrait) {
+
+    /* svh = alto "pequeño" del viewport: evita el salto y el corte
+       cuando aparece/desaparece la barra del navegador en el celu */
+    .hero-scrub-section,
+    .hero-scrub-sticky { height: 100svh; }
+
+    /* El mismo frame del video, ampliado + desenfocado, rellena todo */
+    .hero-scrub-sticky::before {
+        display: block;
+        background:
+            url("https://res.cloudinary.com/k44zr7ap/video/upload/so_3,w_900,e_blur:2000,q_auto/v1789577186/15019085_3840_2160_25fps.jpg")
+            center / cover no-repeat;
+        transform: scale(1.15);   /* tapa los bordes duros del blur */
+        filter: brightness(.5);
+    }
+
+    /* CLAVE: el video se ve COMPLETO, sin recorte lateral */
+    .hero-scrub-video {
+        object-fit: contain;
+        z-index: 1;
+    }
+
+    /* Texto y botón por encima, empujados abajo para no tapar el video */
+    .hero-scrub-overlay {
+        z-index: 2;
+        justify-content: flex-end;
+        padding-bottom: 11vh;
+        background: linear-gradient(
+            180deg,
+            rgba(0,0,0,.25) 0%,
+            rgba(0,0,0,0)   30%,
+            rgba(0,0,0,.55) 76%,
+            rgba(0,0,0,.85) 100%
+        );
+    }
+}
