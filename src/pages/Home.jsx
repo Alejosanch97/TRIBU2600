@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 const video1 = "https://res.cloudinary.com/deafueoco/video/upload/v1776440899/02_1_rhsmu5.mov";
 const scrollVideo = "https://res.cloudinary.com/k44zr7ap/video/upload/q_auto,vc_h264,w_1920/v1789577186/15019085_3840_2160_25fps.mp4";
+const video2 = "https://res.cloudinary.com/k44zr7ap/video/upload/v1790080310/0922.mov";
 
 import "../Styles/home.css";
 import { HashLink } from "react-router-hash-link";
@@ -106,6 +107,21 @@ const getCountryPath = (countryName) => {
 export const Home = () => {
     const videoSources = [video1];
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+    // Detecta si estamos en celular para elegir el video correcto
+    const [isMobile, setIsMobile] = useState(
+        typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+    );
+
+    useEffect(() => {
+        const mq = window.matchMedia('(max-width: 768px)');
+        const handleChange = (e) => setIsMobile(e.matches);
+        mq.addEventListener('change', handleChange);
+        return () => mq.removeEventListener('change', handleChange);
+    }, []);
+
+    // Video vertical en celular, horizontal en lo demás
+    const activeHeroVideo = isMobile ? video2 : scrollVideo;
     const [activeFilter, setActiveFilter] = useState('destination'); // Estado para controlar el filtro activo
     // *** ESTADO Y DATOS PARA EL CARRUSEL DE TESTIMONIOS ***
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -310,9 +326,10 @@ export const Home = () => {
             <section ref={heroScrubRef} className="hero-scrub-section">
                 <div className="hero-scrub-sticky">
                     <video
+                        key={activeHeroVideo}
                         ref={scrollVideoRef}
                         className="hero-scrub-video"
-                        src={scrollVideo}
+                        src={activeHeroVideo}
                         autoPlay
                         muted
                         playsInline

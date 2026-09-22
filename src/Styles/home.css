@@ -2786,50 +2786,46 @@
 }
 
 
-/* Fondo desenfocado detrás del video (oculto por defecto = desktop intacto) */
-.hero-scrub-sticky::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    display: none;
-}
+/* ════════════════════════════════════════════
+   HERO SCRUB — REFUERZO AMARILLO EN CELULAR
+   ════════════════════════════════════════════ */
+@media (max-width: 768px) {
 
-/* ============ HERO VIDEO — SOLO CELULAR (vertical) ============ */
-@media (max-width: 768px) and (orientation: portrait) {
-
-    /* svh = alto "pequeño" del viewport: evita el salto y el corte
-       cuando aparece/desaparece la barra del navegador en el celu */
-    .hero-scrub-section,
-    .hero-scrub-sticky { height: 100svh; }
-
-    /* El mismo frame del video, ampliado + desenfocado, rellena todo */
-    .hero-scrub-sticky::before {
-        display: block;
-        background:
-            url("https://res.cloudinary.com/k44zr7ap/video/upload/so_3,w_900,e_blur:2000,q_auto/v1789577186/15019085_3840_2160_25fps.jpg")
-            center / cover no-repeat;
-        transform: scale(1.15);   /* tapa los bordes duros del blur */
-        filter: brightness(.5);
-    }
-
-    /* CLAVE: el video se ve COMPLETO, sin recorte lateral */
-    .hero-scrub-video {
-        object-fit: contain;
-        z-index: 1;
-    }
-
-    /* Texto y botón por encima, empujados abajo para no tapar el video */
+    /* Sombra más fuerte detrás del texto para que el amarillo resalte
+       sobre el cielo azul y la nieve del video vertical */
     .hero-scrub-overlay {
-        z-index: 2;
         justify-content: flex-end;
-        padding-bottom: 11vh;
+        padding: 0 7vw 14vh;
         background: linear-gradient(
             180deg,
-            rgba(0,0,0,.25) 0%,
-            rgba(0,0,0,0)   30%,
-            rgba(0,0,0,.55) 76%,
-            rgba(0,0,0,.85) 100%
+            rgba(0,0,0,.15) 0%,
+            rgba(0,0,0,0)   25%,
+            rgba(0,0,0,.45) 60%,
+            rgba(0,0,0,.75) 100%
         );
+    }
+
+    /* Amarillo más intenso + sombra que lo despega del fondo claro */
+    .hs-accent {
+        color: #FFD100;
+        text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+
+    /* El título blanco también con sombra para que no se lave */
+    .hero-scrub-title {
+        text-shadow: 0 2px 16px rgba(0,0,0,.5);
+    }
+
+    /* BOTÓN SÓLIDO AMARILLO — ya no transparente */
+    .hero-scrub-cta {
+        align-self: flex-start;
+        background: #FFD100;
+        border: none;
+        color: #06080b;               /* texto negro sobre amarillo */
+        font-weight: 800;
+        letter-spacing: .12em;
+        padding: 1rem 2.2rem;
+        border-radius: 4px;
+        box-shadow: 0 10px 30px rgba(255,209,0,.35);
     }
 }
